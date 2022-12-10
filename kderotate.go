@@ -12,6 +12,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	"time"
 )
 
 var primaryDisplayName string
@@ -30,10 +31,18 @@ func setScreenOrientation(orientation string) {
 
 func main() {
 
-	cmdOut, err := exec.Command("xrandr", "--current").Output()
-	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+	success := false
+	var cmdOut []byte
+	var err error
+	for !success {
+		cmdOut, err = exec.Command("xrandr", "--current").CombinedOutput()
+		if err != nil {
+			fmt.Println(err.Error())
+			fmt.Println(string(cmdOut))
+			time.Sleep(1 * time.Second)
+		} else {
+			success = true
+		}
 	}
 	currentSetup := string(cmdOut)
 	lines := strings.Split(currentSetup, "\n")

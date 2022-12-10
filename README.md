@@ -4,7 +4,7 @@ kderotate is a small app to take the output of monitor-sensor and automatically 
 
 built because the current KDE doesn't have this functionality.
 
-requires:
+## requires:
 
 * xrandr
 * iio-sensor-proxy
