@@ -1,4 +1,4 @@
-#kderotate
+# kderotate
 
 kderotate is a small app to take the output of monitor-sensor and automatically rotate the screen when the appropriate using xrandr.  
 
